@@ -8,10 +8,10 @@
 int r = 300;            // Circle radius.
 int[][] angles1 = {
   {
-    270, -30, 30, 90, 150, 210
+    270, -30, 30,  90, 150, 210
   }
   , {
-    330, 30, 90, 150, 210, 270
+    330,  30, 90, 150, 210, 270
   }
 };
 int[][] angles2 = {
@@ -27,9 +27,9 @@ byte maxCounter = 59;
 long time = 0;
 long currentTime;
 
-byte seconds;
-byte minutes;
-byte hours;
+int seconds;
+int minutes;
+int hours;
 
 ClockFace binaryCF   = new ClockFace(r,  200, 60, 30, angles1);
 ClockFace standardCF = new ClockFace(r, -200, 30,  0, angles2);
@@ -74,17 +74,30 @@ void updateFace() {
   displayBinary(seconds, 0, binaryCF);
   displayBinary(minutes, 1, binaryCF);
   displayBinary(hours,   2, binaryCF);
+  
+  displayBinary(seconds, 0, standardCF);
+  displayBinary(minutes, 1, standardCF);
+  displayBinary(hours,   2, standardCF);
 }
 
-void displayBinary(byte toShow, int unit, ClockFace cf) {
+void displayBinary(int toShow, int unit, ClockFace cf) {
   for (int i = 0; i < cf.angles[0].length; i++) {
-    if (bitRead(toShow, i) == 1) {
+    if (bitRead((byte)toShow, i) == 1) {
       cf.sectorOn(cf.angles[0][i], cf.angles[1][i], unit);
     } 
     else {
       cf.sectorOff(cf.angles[0][i], cf.angles[1][i], unit);
     }
   }
+}
+
+void displayBabylonian(int unit, ClockFace cf) {
+  if(unit < 2) {
+    // Del hver seksjon på fem.
+  } 
+  else {
+    // Del hver seksjon på to.
+  } 
 }
 /**
  * Reads the nth position in the byte and returns a int value of 0 or 1.

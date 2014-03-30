@@ -39,7 +39,7 @@ class ClockFace {
     noStroke();
     fill(fillColour);
     arc(width/2 + offset, height/2, r - (unit*(radius/3)), r - (unit*(radius/3)), radians(startAng), radians(endAng), PIE);
-    if(unit <= 1) {
+    if(unit < 2) {
       fill(255);
       arc(width/2 + offset, height/2, r - ((unit + 1)*(radius/3)), r - ((unit + 1)*(radius/3)), radians(startAng), radians(endAng), PIE);
     }
