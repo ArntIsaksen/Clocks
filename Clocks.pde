@@ -90,7 +90,11 @@ void updateFace() {
   displayBabylonian(minutes, 1, standardCF);
   displayBabylonian(hours,   2, standardCF);
 }
-
+/**
+ * Draws the sectors in the binary numbersystem.
+ *
+ * 
+ */
 void displayBinary(int toShow, int unit, ClockFace cf) {
   for (int i = 0; i < cf.angles[0].length; i++) {
     if (bitRead((byte)toShow, i) == 1) {
@@ -101,7 +105,11 @@ void displayBinary(int toShow, int unit, ClockFace cf) {
     }
   }
 }
-
+/**
+ * Draws the sectors in the Babylonian numbersystem.
+ *
+ * 
+ */
 void displayBabylonian(int toShow, int unit, ClockFace cf) {
   if(unit < 2) {
     cf.sectorOn(cf.angles[0][toShow], cf.angles[1][toShow], unit);
