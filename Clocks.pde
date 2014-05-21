@@ -50,7 +50,7 @@ void setup() {
   
   seconds = 50;
   minutes = 1;
-  hours   = 0;
+  hours   = 1;
   
   updateFace();
 }
@@ -105,24 +105,17 @@ void displayBinary(int toShow, int unit, ClockFace cf) {
     }
   }
 }
-/**
- * Draws the sectors in the Babylonian numbersystem.
- *
- * 
- */
 void displayBabylonian(int toShow, int unit, ClockFace cf) {
-  //If the unit is seconds or minutes.
-  if(unit < 2) {
-    cf.sectorOn(cf.angles[0][toShow], cf.angles[1][toShow], unit);
-  } else {
-    //Hours
-  }
-  if (toShow == 0) {
-    for (int i = 0; i < cf.angles[0].length; i++) {
+  for (int i = 0; i < cf.angles[0].length; i++) {
+    if (i <= toShow) {
+      cf.sectorOn(cf.angles[0][i], cf.angles[1][i], unit);
+    } 
+    else {
       cf.sectorOff(cf.angles[0][i], cf.angles[1][i], unit);
     }
   }
 }
+
 /**
  * Reads the nth position in the byte and returns a int value of 0 or 1.
  * Modeled on the bitRead() function in Arduino.
@@ -134,4 +127,3 @@ void displayBabylonian(int toShow, int unit, ClockFace cf) {
 int bitRead(int b, int n) {
   return ((b / int(pow(2, n)) % 2));
 }
-
