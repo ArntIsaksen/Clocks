@@ -32,7 +32,7 @@ int[][] angles3 = {
 };
 
 int offset = 200;
-int maxCounter = 60;
+int maxCounter = 59;
 long time = 0;
 long currentTime;
 
@@ -48,8 +48,8 @@ void setup() {
   background(255);      // Set the background to white.
   stroke(0);            // Set line drawing color to black.
   
-  seconds = 0;
-  minutes = 0;
+  seconds = 50;
+  minutes = 1;
   hours   = 0;
   
   updateFace();
@@ -59,7 +59,7 @@ void draw() {
   currentTime = millis();
   if ((currentTime - time) >= 1000) {
     updateFace();
-    if (seconds == maxCounter) {
+    if (seconds > maxCounter) {
       seconds = 0;
       minutes++;
       if (minutes > maxCounter) {
@@ -111,17 +111,17 @@ void displayBinary(int toShow, int unit, ClockFace cf) {
  * 
  */
 void displayBabylonian(int toShow, int unit, ClockFace cf) {
+  //If the unit is seconds or minutes.
   if(unit < 2) {
     cf.sectorOn(cf.angles[0][toShow], cf.angles[1][toShow], unit);
-    if (toShow == 0) {
-      for (int i = 0; i < cf.angles[0].length; i++) {
-        cf.sectorOff(cf.angles[0][i], cf.angles[1][i], unit);
-      }
-    } 
-  } 
-  else {
-    // Del hver seksjon på to.
-  } 
+  } else {
+    //Hours
+  }
+  if (toShow == 0) {
+    for (int i = 0; i < cf.angles[0].length; i++) {
+      cf.sectorOff(cf.angles[0][i], cf.angles[1][i], unit);
+    }
+  }
 }
 /**
  * Reads the nth position in the byte and returns a int value of 0 or 1.
