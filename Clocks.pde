@@ -5,7 +5,6 @@
  */
 
 // Variables.
-int r = 300;            // Circle radius.
 int[][] angles1 = {
   {
     270, -30, 30,  90, 150, 210
@@ -31,9 +30,10 @@ int[][] angles3 = {
   }
 };
 
-int offset = 200;
-int maxCounter = 59;
-long time = 0;
+int  r          = 300;            // Circle radius.
+int  offset     = 200;
+int  maxCounter = 59;
+long time       = 0;
 long currentTime;
 
 int seconds;
@@ -45,12 +45,12 @@ ClockFace standardCF = new ClockFace(r, -200, 30,  0, angles3);
 
 void setup() {
   size(1024, 700);
-  background(255);      // Set the background to white.
-  stroke(0);            // Set line drawing color to black.
+  background(255);
+  stroke(0);
   
   seconds = 50;
-  minutes = 1;
-  hours   = 1;
+  minutes = 59;
+  hours   = 12;
   
   updateFace();
 }
@@ -66,8 +66,8 @@ void draw() {
         minutes = 0;
         hours++;
       }
-      if (hours == 24) {
-        hours = 0;
+      if (hours == 13) {
+        hours = 1;
       }
     } 
     else {
@@ -109,9 +109,16 @@ void displayBabylonian(int toShow, int unit, ClockFace cf) {
   for (int i = 0; i < cf.angles[0].length; i++) {
     if (i <= toShow) {
       cf.sectorOn(cf.angles[0][i], cf.angles[1][i], unit);
-    } 
-    else {
-      cf.sectorOff(cf.angles[0][i], cf.angles[1][i], unit);
+      if (unit == 2) {
+        int h = toShow * 5;
+        for (int j = 0; j <= h; j++) {
+          cf.sectorOn(cf.angles[0][j], cf.angles[1][j], unit);
+        }
+      }
+    } else {
+      if (unit < 2) {
+        cf.sectorOff(cf.angles[0][i], cf.angles[1][i], unit);
+      }
     }
   }
 }
@@ -120,8 +127,8 @@ void displayBabylonian(int toShow, int unit, ClockFace cf) {
  * Reads the nth position in the byte and returns a int value of 0 or 1.
  * Modeled on the bitRead() function in Arduino.
  *
- * @param  byte b - The byte to be checked.
- * @param  int  n - The position if the byte to be checked.
+ * @param  int  b - The int to be checked.
+ * @param  int  n - The position if the int to be checked.
  * @return int value of 0 or 1.
  */
 int bitRead(int b, int n) {
