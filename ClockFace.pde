@@ -10,7 +10,7 @@ class ClockFace {
    * @param  int offset       - Number of px from the center of the screen (positiv or negativ).
    * @param  int degPerSector - Number of degrees contained in each sector.
    * @param  int secStartDeg  - The start degree of the first sector.
-   * @param  int[][] angles   - An two-dimentional array with the start and stop degrees for each time increment.
+   * @param  int[][] angles   - A two-dimentional array with the start and stop degrees for each time increment.
    * 
    */
   ClockFace(int radius, int offset, int degPerSector, int secStartDeg, int[][] angles) {
@@ -46,7 +46,7 @@ class ClockFace {
     }
   }
   /**
-   * Draws the lines and cicles again.
+   * Redraws the lines and cicles.
    * 
    */
   void update() {
@@ -54,7 +54,7 @@ class ClockFace {
     drawCircles();
   }
   /**
-   * Draws the sectors that is used to show seconds, minutes and hours passing.
+   * Draws the sectors that is used to show seconds, minutes and hours.
    * 
    */
   void drawArc(int startAng, int endAng, int fillColour, int unit) {

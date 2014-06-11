@@ -30,6 +30,11 @@ int[][] angles3 = {
   }
 };
 
+String binVal = "1 2 4 8 16 32";
+String[] binValArr;
+PFont clockFont;
+
+
 int  r          = 300;            // Circle radius.
 int  offset     = 200;
 int  maxCounter = 59;
@@ -47,6 +52,10 @@ void setup() {
   size(1024, 700);
   background(255);
   stroke(0);
+  
+  binValArr = split(binVal, " ");
+  clockFont = loadFont("FZLTZHK--GBK1-0-48.vlw");
+  textFont(clockFont);
   
   seconds = 50;
   minutes = 59;
@@ -105,6 +114,14 @@ void displayBinary(int toShow, int unit, ClockFace cf) {
     }
   }
 }
+/**
+ * Uses the methods in ClockFace to turn on and off the correct sectors
+ * to display the time.
+ *
+ * @param  int        toShow - The int to be checked.
+ * @param  int        unit   - The position if the int to be checked.
+ * @param  ClockFace  cf     - The clock face to be drawn.
+ */
 void displayBabylonian(int toShow, int unit, ClockFace cf) {
   for (int i = 0; i < cf.angles[0].length; i++) {
     if (i <= toShow) {
